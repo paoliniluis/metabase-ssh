@@ -1,9 +1,8 @@
 services:
   metabase:
-    image: metabase/metabase-enterprise:v1.53.9
+    image: metabase/metabase-enterprise:v1.54.2.1
     ports:
       - 3000:3000
-      - 3300:3300
     container_name: metabase
     hostname: metabase
     volumes: 
@@ -58,6 +57,34 @@ services:
       interval: 5s
       timeout: 5s
       retries: 3
+  mysql-data:
+    image: mysql:9.2.0
+    container_name: mysql-data1
+    hostname: mysql-data1
+    ports:
+      - 3308:3306
+    networks: 
+      - metanet
+    volumes:
+      - $PWD/mysql-config/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+      - $PWD/sample_data:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    environment:
+      MYSQL_ROOT_PASSWORD: metasample123
+      MYSQL_USER: metabase
+      MYSQL_PASSWORD: metasample123
+      MYSQL_DATABASE: sample
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2048M
+        reservations:
+          cpus: '2'
+          memory: 2048M
   openssh-server:
     image: lscr.io/linuxserver/openssh-server:version-8.8_p1-r1
     container_name: ssh

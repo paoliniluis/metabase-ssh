@@ -10,32 +10,27 @@ setup = f'{host}:{port}/api/setup'
 database = f'{host}:{port}/api/database'
 login = f'{host}:{port}/api/session'
 
-pg_sample_15 = {"is_on_demand":False,"is_full_sync":True,"is_sample":False,"cache_ttl":None,"refingerprint":False,"auto_run_queries":True,"schedules":{},"details":{"host":"postgres-data1","port":None,"dbname":"sample","user":"metabase","use-auth-provider":False,"password":"metasample123","schema-filters-type":"all","ssl":False,"tunnel-enabled":False,"advanced-options":False},"name":"postgres-data1","engine":"postgres"}
-        
-postgres_big = {
-    'engine':'postgres',
-    'name':'postgres-other',
+postgres_data_1 = {"is_on_demand":False,"is_full_sync":True,"is_sample":False,"cache_ttl":None,"refingerprint":False,"auto_run_queries":True,"schedules":{},"details":{"host":"postgres-data1","port":None,"dbname":"sample","user":"metabase","use-auth-provider":False,"password":"metasample123","schema-filters-type":"all","ssl":False,"tunnel-enabled":False,"advanced-options":False},"name":"postgres-data1","engine":"postgres"}
+
+mysql_data_1 = {
+    'engine':'mysql',
+    'name':'mysql-data1',
     'details': {
-        'host':'postgres-another-data',
-        'port':'5432',
+        'host':'mysql-data1',
+        'port':'3306',
         'dbname':'sample',
         'user':'metabase',
         'password':'metasample123',
         'schema-filters-type':'all',
         'ssl':False,
         'tunnel-enabled':False,
-        'advanced-options':False
+        'advanced-options':True,
+        'additional-options': 'trustServerCertificate=True'
     },
     'is_full_sync':True
 }
 
-app_db = {'engine':'postgres','name':'app-db','details':{'host':'app-db','port':'5432','dbname':'metabase','user':'metabase','password':'mysecretpassword','schema-filters-type':'all','ssl':False,'tunnel-enabled':False,'advanced-options':False},'is_full_sync':True}
-
-postgres_ssh_1 = {"is_on_demand":False,"is_full_sync":True,"is_sample":False,"cache_ttl":None,"refingerprint":False,"auto_run_queries":True,"schedules":{},"details":{"host":"postgres-data1","port":5432,"dbname":"sample","user":"metabase","password":"metasample123","schema-filters-type":"all","ssl":False,"tunnel-enabled":True,"tunnel-host":"ssh","tunnel-port":2222,"tunnel-user":"metabase","tunnel-auth-option":"ssh-key","tunnel-private-key":"-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCUUjov89\na69l0fjxRMPj45AAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAINaVvzSukjVtGgdg\n7ejckHZ8PbbMif9lqk7Ws+1excxJAAAAoCQiHwFoeVomvkBtGlh+hQWleLNXTc3spMmzHA\niE4Pt00S3XIw2bhjISY/sasSNnSTPULujlBY3UbnCbR7BzHilmf43Q7/Bc575GutTJ0cnc\n7t6EAPhSl7lX7kXgLiHIf8RGrQuGlrTrfiGLhpojPEssV3GfBIzKiCd0VMxQmoEll2oIjJ\n+8JBM0XOdRtK80gb1oezAdOI1h4mjRfYUp95c=\n-----END OPENSSH PRIVATE KEY-----","tunnel-private-key-passphrase":"mysecretpassword","advanced-options":False},"name":"pg-ssh","engine":"postgres"}
-postgres_ssh_2 = {"is_on_demand":False,"is_full_sync":True,"is_sample":False,"cache_ttl":None,"refingerprint":False,"auto_run_queries":True,"schedules":{},"details":{"host":"postgres-another-data","port":5432,"dbname":"sample","user":"metabase","password":"metasample123","schema-filters-type":"all","ssl":False,"tunnel-enabled":True,"tunnel-host":"ssh","tunnel-port":2222,"tunnel-user":"metabase","tunnel-auth-option":"ssh-key","tunnel-private-key":"-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCUUjov89\na69l0fjxRMPj45AAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAINaVvzSukjVtGgdg\n7ejckHZ8PbbMif9lqk7Ws+1excxJAAAAoCQiHwFoeVomvkBtGlh+hQWleLNXTc3spMmzHA\niE4Pt00S3XIw2bhjISY/sasSNnSTPULujlBY3UbnCbR7BzHilmf43Q7/Bc575GutTJ0cnc\n7t6EAPhSl7lX7kXgLiHIf8RGrQuGlrTrfiGLhpojPEssV3GfBIzKiCd0VMxQmoEll2oIjJ\n+8JBM0XOdRtK80gb1oezAdOI1h4mjRfYUp95c=\n-----END OPENSSH PRIVATE KEY-----","tunnel-private-key-passphrase":"mysecretpassword","advanced-options":False},"name":"postgres-other-ssh","engine":"postgres"}
-postgres_ssh_3 = {"is_on_demand":False,"is_full_sync":True,"is_sample":False,"cache_ttl":None,"refingerprint":False,"auto_run_queries":True,"schedules":{},"details":{"host":"app-db","port":5432,"dbname":"metabase","user":"metabase","password":"mysecretpassword","schema-filters-type":"all","ssl":False,"tunnel-enabled":True,"tunnel-host":"ssh","tunnel-port":2222,"tunnel-user":"metabase","tunnel-auth-option":"ssh-key","tunnel-private-key":"-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCUUjov89\na69l0fjxRMPj45AAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAINaVvzSukjVtGgdg\n7ejckHZ8PbbMif9lqk7Ws+1excxJAAAAoCQiHwFoeVomvkBtGlh+hQWleLNXTc3spMmzHA\niE4Pt00S3XIw2bhjISY/sasSNnSTPULujlBY3UbnCbR7BzHilmf43Q7/Bc575GutTJ0cnc\n7t6EAPhSl7lX7kXgLiHIf8RGrQuGlrTrfiGLhpojPEssV3GfBIzKiCd0VMxQmoEll2oIjJ\n+8JBM0XOdRtK80gb1oezAdOI1h4mjRfYUp95c=\n-----END OPENSSH PRIVATE KEY-----","tunnel-private-key-passphrase":"mysecretpassword","advanced-options":False},"name":"app-db-ssh","engine":"postgres"}
-
-dbs = [pg_sample_15, app_db, postgres_big, postgres_ssh_1, postgres_ssh_2, postgres_ssh_3]
+dbs = [postgres_data_1, mysql_data_1]
 
 def health():
     response = requests.get(healthCheckEndpoint, verify=False)
